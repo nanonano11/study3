@@ -5,7 +5,9 @@ class InfosController extends AppController {
     public function index() {
          $this->set('infos', $this->Info->find('all'));
     }
-
+    public function admin() {
+         $this->set('infos', $this->Info->find('all'));
+    }
     public function view($id = null) {
         if (!$id) {
             throw new NotFoundException(__('Invalid info'));
