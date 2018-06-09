@@ -1,8 +1,8 @@
 <?php
 
-App::uses('PasssController', 'Controller');
+App::uses('PassesController', 'Controller');
 
-class UsersController extends PasssController {
+class UsersController extends PassesController {
 
   public function beforeFilter() {
       parent::beforeFilter();

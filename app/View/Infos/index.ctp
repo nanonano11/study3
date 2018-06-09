@@ -1,6 +1,6 @@
 
 <h1>お知らせ</h1>
-<p><?php echo $this->Html->link('admin', array('controller' =>'Admininfos', 'action' => 'admin')); ?></p>
+<p><?php echo $this->Html->link('admin', array('controller' =>'admininfos', 'action' => 'index')); ?></p>
 <table>
 
 <!-- ここで $posts 配列をループして、投稿情報を表示 -->
