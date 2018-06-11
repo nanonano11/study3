@@ -1,6 +1,7 @@
 
 <h1>Blog posts</h1>
 <p><?php echo $this->Html->link('Add Info', array('action' => 'add')); ?></p>
+<p><?php echo $this->Html->link('search', array('action' => 'search')); ?></p>
 
 <table>
     <tr>

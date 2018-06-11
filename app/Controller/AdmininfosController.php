@@ -75,26 +75,15 @@ class AdmininfosController extends PassesController {
 
     return $this->redirect(array('action' => 'index'));
   }
+
   public function search(){
-    if($this->request->is('post') && $this->request->data['Search']['title'] != ""){
-      //Formの値を取得
-      $title = $this->request->data['Info']['title'];
-      //検索文字を空白（全角又は半角）で区切って配列$keywordsに代入
-      $keywords = preg_split("/ |\\s/",$title);
-      //配列$keywordsの数だけ繰り返して検索条件を$conditionsに代入
-      foreach($keywords as $keyword){
-        $conditions[] = "title like '%$keyword%'";
-      }
-      //POSTされたデータを曖昧検索
+    if($this->request->is('post')){
+      $title=$this->request->data['Info']['title'];
       $data = $this->Info->find('all',array(
-        'conditions' => $conditions
-      ));
+'conditions'=>array('title like'=>'%'.$title.'%')));
       $this->set('datas',$data);
     }else{
-      //POST以外の場合
-      //一覧表示
-      $data = $this->Info->find('all');
-      $this->set('datas',$data);
+        $this->set('datas', $this->Info->find('all'));
     }
   }
 }

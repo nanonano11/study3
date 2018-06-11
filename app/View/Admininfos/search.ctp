@@ -4,7 +4,7 @@
  echo $this->Form->input('title', array('label' => 'タイトル名を入れてください'));
  echo $this->Form->end('検索');
 ?>
-<?php if($this->request->is('post') && $this->request->data['Search']['title']!=""){?>
+<?php if($this->request->is('post') && $this->request->data['Info']['title']!=""){?>
  <table>
    <tr>
      <th><?php echo "ID";?></th>
