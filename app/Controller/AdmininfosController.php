@@ -14,7 +14,21 @@ class AdmininfosController extends PassesController {
   );
 
   public function index() {
-    $this->set('infos', $this->paginate());
+
+    if($this->request->is('post')){
+      $title=$this->request->data['Info']['title'];
+      $status =array(
+        'conditions'=>array(
+          'or'=>array(
+            'body like'=>'%'.$title.'%',
+            'title like'=>'%'.$title.'%')
+          )
+        );
+        $data = $this->Info->find('all',$status);
+        $this->set('infos',$data);
+      }else{
+  $this->set('infos', $this->paginate());
+      }
   }
 
   public function view($id) {
@@ -84,7 +98,7 @@ class AdmininfosController extends PassesController {
   public function search(){
     if($this->request->is('post')){
       $title=$this->request->data['Info']['title'];
-      $keywords =array(
+      $status =array(
         'conditions'=>array(
           'or'=>array(
             'body like'=>'%'.$title.'%',
@@ -92,7 +106,7 @@ class AdmininfosController extends PassesController {
           )
         );
 
-        $data = $this->Info->find('all',$keywords);
+        $data = $this->Info->find('all',$status);
         $this->set('datas',$data);
       }else{
         $this->set('datas', $this->Info->find('all'));

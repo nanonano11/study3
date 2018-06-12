@@ -1,8 +1,12 @@
 
 <h1>Blog posts</h1>
 <p><?php echo $this->Html->link('Add Info', array('action' => 'add')); ?></p>
-<p><?php echo $this->Html->link('search', array('action' => 'search')); ?></p>
-
+<!-- <p><?php echo $this->Html->link('search', array('action' => 'search')); ?></p> -->
+<?php
+ echo $this->Form->create('Info', array('type'=>'post','url'=>'index'));
+ echo $this->Form->input('title', array('label' => 'タイトル名を入れてください'));
+ echo $this->Form->end('検索');
+?>
 <table>
     <tr>
         <th><?php echo $this->Paginator->sort('id');?></th>
@@ -45,6 +49,7 @@
     <?php endforeach; ?>
 
 </table>
+<?php if($this->request->is('get')){?>
 <div class="paging">
 <?php
 echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
@@ -52,3 +57,4 @@ echo $this->Paginator->numbers(array('separator' => ''));
 echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled'));
 ?>
 </div>
+<?php } ?>
