@@ -27,3 +27,10 @@
     <?php endforeach; ?>
 
 </table>
+<div class="paging">
+<?php
+echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
+echo $this->Paginator->numbers(array('separator' => ''));
+echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled'));
+?>
+</div>

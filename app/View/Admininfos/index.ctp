@@ -5,10 +5,10 @@
 
 <table>
     <tr>
-        <th>Id</th>
-        <th>Title</th>
+        <th><?php echo $this->Paginator->sort('id');?></th>
+        <th><?php echo $this->Paginator->sort('title');?></th>
         <th>Actions</th>
-        <th>Created</th>
+        <th><?php echo $this->Paginator->sort('created','作成日');?></th>
     </tr>
 
 <!-- ここで $posts 配列をループして、投稿情報を表示 -->
@@ -45,3 +45,10 @@
     <?php endforeach; ?>
 
 </table>
+<div class="paging">
+<?php
+echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled'));
+echo $this->Paginator->numbers(array('separator' => ''));
+echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled'));
+?>
+</div>

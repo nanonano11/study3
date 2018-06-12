@@ -4,9 +4,11 @@ App::uses('AppController', 'Controller');
 
 class InfosController extends AppController {
     public $helpers = array('Html', 'Form');
-
+    public $paginate = array(
+    'limit' =>10
+    );
     public function index() {
-         $this->set('infos', $this->Info->find('all'));
+      $this->set('infos', $this->paginate());
     }
     public function view($id = null) {
         if (!$id) {

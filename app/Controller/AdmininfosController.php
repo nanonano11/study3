@@ -9,8 +9,12 @@ class AdmininfosController extends PassesController {
   public $helpers = array('Html', 'Form', 'Flash');
   // public $components = array('Flash');
 
+  public $paginate = array(
+    'limit' =>10
+  );
+
   public function index() {
-    $this->set('infos', $this->Info->find('all'));
+    $this->set('infos', $this->paginate());
   }
 
   public function view($id) {
@@ -76,14 +80,22 @@ class AdmininfosController extends PassesController {
     return $this->redirect(array('action' => 'index'));
   }
 
+
   public function search(){
     if($this->request->is('post')){
       $title=$this->request->data['Info']['title'];
-      $data = $this->Info->find('all',array(
-'conditions'=>array('title like'=>'%'.$title.'%')));
-      $this->set('datas',$data);
-    }else{
+      $keywords =array(
+        'conditions'=>array(
+          'or'=>array(
+            'body like'=>'%'.$title.'%',
+            'title like'=>'%'.$title.'%')
+          )
+        );
+
+        $data = $this->Info->find('all',$keywords);
+        $this->set('datas',$data);
+      }else{
         $this->set('datas', $this->Info->find('all'));
+      }
     }
   }
-}
